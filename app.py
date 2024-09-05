@@ -48,10 +48,6 @@ def dashboard():
         return f"dashbord for {session['user']}"       
     return f"dashbord for {session['user']}"
 
-@app.route("/dashboard/<email>")
-def dashboardForUser(email):
-    session['user'] = email
-    return redirect(url_for("dashboard"))
 
 if __name__ == '__main__':
     app.run(debug=True)
