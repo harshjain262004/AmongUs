@@ -5,13 +5,14 @@ connection_string="mongodb+srv://hjgoat:hjgoat@technormieshackx.jwvnz.mongodb.ne
 client=MongoClient(connection_string)
 db=client["amongus"]
 userdata=db["userdata"]
+quizdata=db["quizdata"]
 
 def add_signup(useremail,password,name):
     newpass=hashlib.sha256(password.encode()).hexdigest()
     query={"useremail":useremail}
     if userdata.find_one(query):
         return False
-    userdata.insert_one({'useremail':useremail,'password':newpass,'name':name})
+    userdata.insert_one({'useremail':useremail,'password':newpass,'name':name,'State':1})
     return True
 
 def check_login(useremail,password):
@@ -21,9 +22,23 @@ def check_login(useremail,password):
         return True
     return False
 
-def getName(useremail="harsh12345@gmail.com",password="harshgoat12345"):
+def getName(useremail,password):
     newpass=hashlib.sha256(password.encode()).hexdigest()
     query={"useremail":useremail,"password":newpass}
     projection={"name":1,"_id":0}
     result=userdata.find_one(query,projection)
     return result['name']
+
+
+def getQuestion(state=1):
+    query={"State":state}
+    document=quizdata.find_one(query,{"_id":0})
+    return document
+
+
+def getState(useremail):
+    query={"useremail":useremail}
+    condition={"_id":0,"State":1}
+    result=userdata.find_one(query,condition)
+    return result['State']
+
