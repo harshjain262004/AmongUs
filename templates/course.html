@@ -149,7 +149,7 @@
     <!-- Course Detail Start -->
 <div class="row justify-content-center text-center align-items-center" style="max-width: 100%; margin: 0 auto; padding: 20px;margin-top: 10vh;">
     <div class="col-3 align-middle">
-        <button style="width: 80px; height: 80px; background: rgba(0, 0, 0, 0.7); color: white; border: none; border-radius: 50%; font-size: 24px; cursor: pointer;">
+        <button id="piche" style="width: 80px; height: 80px; background: rgba(0, 0, 0, 0.7); color: white; border: none; border-radius: 50%; font-size: 24px; cursor: pointer;">
             <i class="fas fa-backward align-middle"></i>
         </button>
     </div>
@@ -159,7 +159,7 @@
         </div> 
     </div>
     <div class="col-3">
-        <button style="width: 80px; height: 80px; background: rgba(0, 0, 0, 0.7); color: white; border: none; border-radius: 50%; font-size: 24px; cursor: pointer;">
+        <button id="aage" style="width: 80px; height: 80px; background: rgba(0, 0, 0, 0.7); color: white; border: none; border-radius: 50%; font-size: 24px; cursor: pointer;">
             <i class="fas fa-forward"></i>
         </button>
     </div>
@@ -178,16 +178,6 @@
 
     <!-- Template Javascript -->
     <script src="../static/js/main.js"></script>
-
-    <script>
-        document.querySelector('.prev').addEventListener('click', function() {
-            DecrementState();
-        });
-
-        document.querySelector('.next').addEventListener('click', function() {
-            onPageLoad();
-        });
-    </script>
     <script src="../static/js/Course.js"></script>
 </body>
 

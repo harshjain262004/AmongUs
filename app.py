@@ -66,6 +66,11 @@ def IncrementStateFunc(email):
     IncrementState(email)
     return jsonify({"Sucess":1})
 
+@app.route("/dashboard/DecrementState/<email>", methods=["POST","GET"])
+def DecrementStateFunc(email):
+    result = DecrementState(email)
+    return jsonify(result)
+
 @app.route("/about")
 def about():
     return render_template("about.html")

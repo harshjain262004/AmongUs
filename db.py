@@ -46,3 +46,17 @@ def IncrementState(email):
     query = {"useremail":email}
     userdata.update_one(query,{'$inc':{"State":1}})
     return True
+
+def DecrementState(email):
+    query = {"useremail": email}
+    current_data = userdata.find_one(query)
+    if current_data and current_data["State"] > 0:
+        userdata.update_one(query, {'$inc': {"State": -1}})
+        current_data = userdata.find_one(query)
+        print(current_data)
+        result = quizdata.find_one({"State":current_data["State"]})
+        print(result)
+        return result
+    else:
+        result = quizdata.find_one({"State":0})
+        return result
