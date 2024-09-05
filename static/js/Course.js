@@ -64,6 +64,7 @@ function ShowCorrect(realans,Answer){
     correctAnswer.style.display = "block";
     if (Answer == realans){
         IncrementState(email);
+        location.reload();
     }
 }
 
