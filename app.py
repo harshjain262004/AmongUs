@@ -1,7 +1,8 @@
-from flask import Flask, render_template,redirect,url_for,flash,request,jsonify
+from flask import Flask, render_template,redirect,url_for,flash,request,jsonify,session
 from db import *
 
 app = Flask(__name__)
+app.secret_key = "MujHackX24"
 
 # base url
 @app.route('/')
@@ -12,25 +13,27 @@ def index():
 @app.route("/signup",methods=['POST','GET'])
 def signup():
     if request.method == 'POST':
-        data = request.get_json()   
-        username = data.get('username')
-        password = data.get('password')
-        if add_signup(username,password):
+        name = request.form['name']
+        useremail = request.form['useremail']
+        password = request.form['password']
+        if add_signup(useremail,password,name):
             flash("Account created successfully")
-            return redirect(url_for("login"))
+            session['user'] = useremail
+            return redirect(url_for("dashboard"))
         else:
             flash("Account already exists, Try logging in")
-            return render_template('index.html')
+            return render_template('login.html')
     else:
-        return render_template('index.html')
+        return render_template('login.html')
 
 # login
 @app.route("/login",methods=['POST','GET'])
 def login():
     if request.method == 'POST':
-        useremail = request.form['username']
+        useremail = request.form['useremail']
         password = request.form['password']
         if check_login(useremail,password):
+            session["user"] = useremail
             flash("Succesful Login")
             return redirect(url_for("dashboard"))
         else:
@@ -41,7 +44,9 @@ def login():
 
 @app.route("/dashboard",methods=["GET","POST"])
 def dashboard():
-    pass
+    if "user" in session:
+        pass       
+    return f"dashbord for {session['user']}"
 
 if __name__ == '__main__':
     app.run(debug=True)
