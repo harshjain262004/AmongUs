@@ -11,7 +11,7 @@ userdata=db["userdata"]
 
 
 
-def add_signup(useremail="harsh12345@gmail.com",password="harshgoat12345",name="Harsh"):
+def add_signup(useremail,password,name):
     newpass=hashlib.sha256(password.encode()).hexdigest()
     query={"useremail":useremail}
     if userdata.find_one(query):
@@ -25,6 +25,15 @@ def check_login(useremail,password):
     if userdata.find_one(query):
         return True
     return False
+
+
+def getName(useremail="harsh12345@gmail.com",password="harshgoat12345"):
+    newpass=hashlib.sha256(password.encode()).hexdigest()
+    query={"useremail":useremail,"password":newpass}
+    projection={"name":1,"_id":0}
+    result=userdata.find_one(query,projection)
+    return result['name']
+
 
 #123
 

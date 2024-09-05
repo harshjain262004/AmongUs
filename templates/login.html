@@ -10,23 +10,37 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form >
+            <form method="post" action="/signup">
                 <h1>Create Account</h1>
                 <span> Use your email for registration</span>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button>Sign Up</button>
+                <input type="text" placeholder="Name" name="name" />
+                <input type="email" placeholder="Email" name="useremail"/>
+                <input type="password" placeholder="Password" name="password"/>
+                <button type="submit">Sign Up</button>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
             </form>
         </div>
+
         <div class="form-container sign-in">
-            <form>
+            <form method="post" action="/login">
                 <h1>Sign In</h1>
                 <span>Use your & email password</span>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
+                <input type="email" placeholder="Email" name="useremail"/>
+                <input type="password" placeholder="Password" name="password"/>
+                <button type="submit">Sign In</button>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
             </form>
         </div>
         <div class="toggle-container">
