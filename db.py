@@ -20,21 +20,9 @@ def add_signup(useremail,password,name):
     return True
 
 def check_login(useremail,password):
-    newpass=hashlib.sha256(password.encode()).hexdigest()
-    query={"useremail":useremail,"password":newpass}
-    if userdata.find_one(query):
-        return True
-    return False
+    # useremail already exists and fetch document and check
+    pass
 
-
-def getName(useremail="harsh12345@gmail.com",password="harshgoat12345"):
-    newpass=hashlib.sha256(password.encode()).hexdigest()
-    query={"useremail":useremail,"password":newpass}
-    projection={"name":1,"_id":0}
-    result=userdata.find_one(query,projection)
-    return result['name']
-
-
-#123
-
-# print(check_login(useremail="harsh12345@gmail.com",password="harshgoat123"))
+def getId(useremail,password):
+    #return string of id of useremail
+    pass
