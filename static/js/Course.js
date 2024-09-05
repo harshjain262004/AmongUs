@@ -6,6 +6,9 @@ function onPageLoad() {
     $.ajax({
         url: `/dashboard/course/${email}`,
         type: "POST",
+        data:{
+
+        },
         success: function (response) {
             videodiv = document.getElementById("VideoOrQuiz");
             if (response.quiz == 0){
@@ -24,10 +27,10 @@ function onPageLoad() {
                     <div id="quiz-section" class="pt-5">
                     <h2>${response.Question}</h2>
                     <div class="quiz-options">
-                    <button onclick="ShowCorrect(${response.Option1})>${response.Option1}</button>
-                    <button onclick="ShowCorrect(${response.Option2})>${response.Option2}</button>
-                    <button onclick="ShowCorrect(${response.Option3})>${response.Option3}</button>
-                    <button id="Correctanswer" class="hidden" style="border:green 5px solid;">${response.Answer}</button>
+                    <button onclick="ShowCorrect('${response.Option1}','${response.Answer}');">${response.Option1}</button>
+                    <button onclick="ShowCorrect('${response.Option2}','${response.Answer}');">${response.Option2}</button>
+                    <button onclick="ShowCorrect('${response.Option3}','${response.Answer}');">${response.Option3}</button>
+                    <button id="Correctanswer" style="border:green 5px solid; display:none;">${response.Answer}</button>
                     </div>
                     </div>
                 `;
@@ -56,11 +59,11 @@ function IncrementState(email){
       }); 
 }
 
-function ShowCorrect(realans){
-    const correctAnswer = document.getElementById("Correctanswer").value;
+function ShowCorrect(realans,Answer){
+    const correctAnswer = document.getElementById("Correctanswer");
     const email = document.getElementById("email").value;
-    correctAnswer.className = ""
-    if (correctAnswer == realans){
+    correctAnswer.style.display = "block";
+    if (Answer == realans){
         IncrementState(email);
     }
 }
