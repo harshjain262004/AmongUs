@@ -61,10 +61,27 @@ def getQuestionOrVideo(email):
     print(questionorVideo)
     return jsonify(questionorVideo)
 
-@app.route("/dashboard/IncrementState/<email>")
+@app.route("/dashboard/IncrementState/<email>", methods=["POST","GET"])
 def IncrementStateFunc(email):
     IncrementState(email)
     return jsonify({"Sucess":1})
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/courses")
+def courses():
+    return render_template("Courses.html")
+
+@app.route("/team")
+def team():
+    return render_template("team.html")
+
+@app.route("/logout")
+def logout():
+    session.pop("user",None)
+    return redirect(url_for("signup"))
 
 if __name__ == '__main__':
     app.run(debug=True)

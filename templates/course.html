@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <link href="../static/img/icon.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +24,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
@@ -34,6 +34,88 @@
     <link href="../static/css/style.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Center the container */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: white;
+            /* Background color for the body */
+            position: relative;
+            /* For positioning the navigation buttons */
+        }
+
+        /* Customize the container */
+        .quiz-container {
+            background-color: orange;
+            /* Background color for the quiz container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            /* Adjust width as needed */
+            max-width: 600px;
+            /* Limit the max width */
+        }
+
+        /* Video player styling */
+        video {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Styling quiz options */
+        .quiz-options button {
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: orange;
+            font-weight: bold;
+        }
+
+        .quiz-options button:hover {
+            background-color: #ffcc80;
+            /* Lighter orange when hovered */
+        }
+
+        /* Hide elements initially */
+        .hidden {
+            display: none;
+        }
+
+        /* Navigation buttons */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: orange;
+            border: none;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .nav-button.left {
+            left: 0;
+        }
+
+        .nav-button.right {
+            right: 0;
+        }
+
+        .nav-button:hover {
+            background-color: #ffcc80;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,8 +123,8 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <p class="m-0 fw-bold" style="font-size: 25px;"><img src="img/icon.png" alt="" height="50px">Among<span
+        <a href="/dashboard" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <p class="m-0 fw-bold" style="font-size: 25px;"><img src="../static/img/icon.png" alt="" height="50px">Among<span
                     style="color: #fb873f;">Us</span></p>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -50,12 +132,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="courses.html" class="nav-item nav-link">Courses</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="login.html" class="nav-item nav-link"><i class="fa fa-user"></i></a>
-                <a href="#" class="nav-item nav-link">
+                <a href="/dashboard" class="nav-item nav-link active">Home</a>
+                <a href="/about" class="nav-item nav-link">About</a>
+                <a href="/courses" class="nav-item nav-link">Courses</a>
+                <a href="/dashboard" class="nav-item nav-link">Contact</a>
+                <a href="/logout" class="nav-item nav-link"><i class="fa fa-user"></i></a>
+                <a href="/" class="nav-item nav-link">
                     <div id="google_translate_element"></div>
                 </a>
             </div>
@@ -72,7 +154,7 @@
         </button>
     </div>
     <div class="col-6">
-        <div id="VideoOrQuiz" class="container" style="width: 100%; height: 0; padding-bottom: 56.25%; background: #333; border-radius: 10px; position: relative; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);">
+        <div id="VideoOrQuiz" class="container" style="width: 100%; height: 0; padding-bottom: 56.25%; background: #fb873f; border-radius: 10px; position: relative; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);">
     
         </div> 
     </div>
@@ -91,19 +173,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../static/lib/wow/wow.min.js"></script>
+    <script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="../static/js/main.js"></script>
 
     <script>
         document.querySelector('.prev').addEventListener('click', function() {
-            // Handle previous video logic here
+            DecrementState();
         });
 
         document.querySelector('.next').addEventListener('click', function() {
-            // Handle next video logic here
+            onPageLoad();
         });
     </script>
     <script src="../static/js/Course.js"></script>

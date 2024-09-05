@@ -45,3 +45,4 @@ def getState(useremail):
 def IncrementState(email):
     query = {"useremail":email}
     userdata.update_one(query,{'$inc':{"State":1}})
+    return True
