@@ -45,9 +45,26 @@ def login():
 @app.route("/dashboard",methods=["GET","POST"])
 def dashboard():
     if "user" in session:
-        return f"dashbord for {session['user']}"       
-    return f"dashbord for {session['user']}"
+        return render_template("dashboard.html",email=session['user'])       
+    return redirect(url_for("signup"))
 
+# course page
+@app.route("/dashboard/course", methods=["POST","GET"])
+def course():
+    return render_template("course.html",email=session['user'])
+
+# get Question or video
+@app.route("/dashboard/course/<email>",methods = ["POST","GET"])
+def getQuestionOrVideo(email):
+    state = getState(email)
+    questionorVideo = getQuestion(state)
+    print(questionorVideo)
+    return jsonify(questionorVideo)
+
+@app.route("/dashboard/IncrementState/<email>")
+def IncrementStateFunc(email):
+    IncrementState(email)
+    return jsonify({"Sucess":1})
 
 if __name__ == '__main__':
     app.run(debug=True)

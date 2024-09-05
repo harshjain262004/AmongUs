@@ -42,3 +42,6 @@ def getState(useremail):
     result=userdata.find_one(query,condition)
     return result['State']
 
+def IncrementState(email):
+    query = {"useremail":email}
+    userdata.update_one(query,{'$inc':{"State":1}})
