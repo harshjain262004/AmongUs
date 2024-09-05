@@ -12,7 +12,7 @@ def add_signup(useremail,password,name):
     query={"useremail":useremail}
     if userdata.find_one(query):
         return False
-    userdata.insert_one({'useremail':useremail,'password':newpass,'name':name,'State':1})
+    userdata.insert_one({'useremail':useremail,'password':newpass,'name':name,'State':0})
     return True
 
 def check_login(useremail,password):
@@ -30,7 +30,7 @@ def getName(useremail,password):
     return result['name']
 
 
-def getQuestion(state=1):
+def getQuestion(state):
     query={"State":state}
     document=quizdata.find_one(query,{"_id":0})
     return document
