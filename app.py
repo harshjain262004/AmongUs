@@ -34,7 +34,6 @@ def login():
         password = request.form['password']
         if check_login(useremail,password):
             session["user"] = useremail
-            flash("Succesful Login")
             return redirect(url_for("dashboard"))
         else:
             flash("Incorrect credentials or account does not exist")
@@ -87,3 +86,6 @@ def team():
 def logout():
     session.pop("user",None)
     return redirect(url_for("signup"))
+
+if __name__ == '__main__':
+    app.run(debug=True)
