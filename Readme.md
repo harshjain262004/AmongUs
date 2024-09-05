@@ -1,0 +1,1 @@
+Welcome to AmongUs - A curated education platform
