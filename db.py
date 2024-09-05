@@ -1,15 +1,10 @@
-from pymongo import MongoClient
+from pymongo import MongoClient # type: ignore
 import hashlib
-
 
 connection_string="mongodb+srv://hjgoat:hjgoat@technormieshackx.jwvnz.mongodb.net/"
 client=MongoClient(connection_string)
 db=client["amongus"]
 userdata=db["userdata"]
-
-
-
-
 
 def add_signup(useremail,password,name):
     newpass=hashlib.sha256(password.encode()).hexdigest()

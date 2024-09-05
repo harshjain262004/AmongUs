@@ -45,8 +45,13 @@ def login():
 @app.route("/dashboard",methods=["GET","POST"])
 def dashboard():
     if "user" in session:
-        pass       
+        return f"dashbord for {session['user']}"       
     return f"dashbord for {session['user']}"
+
+@app.route("/dashboard/<email>")
+def dashboardForUser(email):
+    session['user'] = email
+    return redirect(url_for("dashboard"))
 
 if __name__ == '__main__':
     app.run(debug=True)
