@@ -39,5 +39,9 @@ def login():
     else:
         return render_template('login.html')
 
+@app.route("/dashboard",methods=["GET","POST"])
+def dashboard():
+    pass
+
 if __name__ == '__main__':
     app.run(debug=True)
