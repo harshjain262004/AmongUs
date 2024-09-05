@@ -20,9 +20,9 @@ def signup():
             return redirect(url_for("login"))
         else:
             flash("Account already exists, Try logging in")
-            return render_template('login.html')
+            return render_template('index.html')
     else:
-        return render_template('signup.html')
+        return render_template('index.html')
 
 # login
 @app.route("/login",methods=['POST','GET'])
