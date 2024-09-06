@@ -50,7 +50,9 @@ def dashboard():
 # course page
 @app.route("/dashboard/course", methods=["POST","GET"])
 def course():
-    return render_template("course.html",email=session['user'])
+    state = getState(useremail=session['user'])
+    ans = (state/35)*100
+    return render_template("course.html",email=session['user'],progress = ans)
 
 # get Question or video
 @app.route("/dashboard/course/<email>",methods = ["POST","GET"])
