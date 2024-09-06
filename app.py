@@ -17,7 +17,6 @@ def signup():
         useremail = request.form['useremail']
         password = request.form['password']
         if add_signup(useremail,password,name):
-            flash("Account created successfully")
             session['user'] = useremail
             return redirect(url_for("dashboard"))
         else:
@@ -62,28 +61,34 @@ def getQuestionOrVideo(email):
     print(questionorVideo)
     return jsonify(questionorVideo)
 
+# Increment State API
 @app.route("/dashboard/IncrementState/<email>", methods=["POST","GET"])
 def IncrementStateFunc(email):
     IncrementState(email)
     return jsonify({"Sucess":1})
 
+# Decrement State API
 @app.route("/dashboard/DecrementState/<email>", methods=["POST","GET"])
 def DecrementStateFunc(email):
     result = DecrementState(email)
     return jsonify(result)
 
+# about
 @app.route("/about")
 def about():
     return render_template("about.html")
 
+# Courses page or menu of courses
 @app.route("/courses")
 def courses():
     return render_template("Courses.html")
 
+# team
 @app.route("/team")
 def team():
     return render_template("team.html")
 
+# logout
 @app.route("/logout")
 def logout():
     session.pop("user",None)
